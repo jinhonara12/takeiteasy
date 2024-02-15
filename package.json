@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@notionhq/client": "^2.2.14",
     "dotenv": "^16.4.4",
     "firebase": "^10.8.0"
   }
