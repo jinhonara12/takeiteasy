@@ -2,7 +2,6 @@ import dotenv from "dotenv"
 import { initializeApp } from "firebase/app";
 import { getDatabase, set, ref } from "firebase/database"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { getAnalytics } from "firebase/analytics";
 import { Client } from "@notionhq/client";
 dotenv.config()
 
@@ -18,7 +17,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
 // init DB
 const database = getDatabase(app)
