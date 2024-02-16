@@ -55,6 +55,11 @@
     border-radius: 5px;
 }
 
+.list__box .item .date__box {
+    display: flex;
+}
+
+
 .list__box .item .right {
     flex: 2 2 0;
 

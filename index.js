@@ -56,7 +56,7 @@ const getPageProperty = async (id_array) => {
                 PROPERTY_OBJECT.push({
                     title: data.properties.name.title[0].plain_text,
                     start_date: data.properties.date.date ? data.properties.date.date.start : '',
-                    end_date: data.properties.date.date && data.properties.date.date.end ? data.properties.date.date.end : '',
+                    end_date: data.properties.date.date && data.properties.date.date.end ? '~' + data.properties.date.date.end : '',
                     d_date: data.properties.d_day.formula.string ? data.properties.d_day.formula.string : "",
                     formpage: data.properties.formpage.url ? data.properties.formpage.url : '',
                     webpage: data.properties.webpage.url ? data.properties.webpage.url : '',
