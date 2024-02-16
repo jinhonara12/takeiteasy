@@ -40,7 +40,8 @@ const writeDate = (data) => {
                     const typeSpan = document.querySelector('.type span');
                     cloneEl(data[i].type.length, typeSpan)
                     for (let j = 0; j < type[i].childElementCount; j++) {
-                        el[i].querySelectorAll('span')[j].textContent = data[i][el[i].dataset.key][j]
+                        el[i].querySelectorAll('span')[j].textContent = data[i][el[i].dataset.key][j].name
+                        el[i].querySelectorAll('span')[j].setAttribute('data-color', `${data[i][el[i].dataset.key][j].color}`)
                     }
                 }
                 else {

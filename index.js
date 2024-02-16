@@ -52,7 +52,7 @@ const getPageProperty = async (id_array) => {
         const DATA_TYPE_ARRAY = [];
         const response = await NOTION.pages.retrieve({ page_id: id_array[i].id })
             .then(data => {
-                data.properties.type.multi_select.sort((a, b) => b - a).forEach((el) => { DATA_TYPE_ARRAY.push(el.name) })
+                data.properties.type.multi_select.sort((a, b) => b - a).forEach((el) => { DATA_TYPE_ARRAY.push({ 'name': el.name, 'color': el.color }) })
                 PROPERTY_OBJECT.push({
                     title: data.properties.name.title[0].plain_text,
                     start_date: data.properties.date.date ? data.properties.date.date.start : '',

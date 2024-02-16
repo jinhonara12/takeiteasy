@@ -1,6 +1,16 @@
 /* var set */
 :root {
     --light-line-color: #444;
+    --color-red: #9d0208;
+    --color-default: #343a40;
+    --color-brown: #7f5539;
+    --color-blue: #023e8a;
+    --color-green: #3a5a40;
+    --color-pink: #f72585;
+    --color-yellow: #ffd500;
+    --color-gray: #e5e5e5;
+    --color-orange: #f77f00;
+    --color-purple: #7209b7;
 }
 
 /* common class */
@@ -20,6 +30,45 @@
     display: none;
 }
 
+[data-color="red"] {
+    background-color: var(--color-red);
+}
+
+[data-color="default"] {
+    background-color: var(--color-default);
+}
+
+[data-color="brown"] {
+    background-color: var(--color-brown);
+}
+
+[data-color="blue"] {
+    background-color: var(--color-blue);
+}
+
+[data-color="green"] {
+    background-color: var(--color-green);
+}
+
+[data-color="pink"] {
+    background-color: var(--color-pink);
+}
+
+[data-color="yellow"] {
+    background-color: var(--color-yellow);
+}
+
+[data-color="gray"] {
+    background-color: var(--color-gray);
+}
+
+[data-color="orange"] {
+    background-color: var(--color-orange);
+}
+
+[data-color="purple"] {
+    background-color: var(--color-purple);
+}
 
 /* common style */
 .wrapper {
