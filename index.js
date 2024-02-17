@@ -124,6 +124,12 @@ const getFestPages = async () => {
                     multi_select: {
                         contains: "강습"
                     }
+                },
+                {
+                    property: "type",
+                    multi_select: {
+                        contains: "워크샵"
+                    }
                 }
             ]
         }
