@@ -32,7 +32,6 @@ const db_pw = process.env.db_PW;
 signInWithEmailAndPassword(auth, db_id, db_pw)
     .then((userCredential) => {
         const user = userCredential.user;
-        console.time('데이터 업로드')
         getFestPages()
     })
     .catch(err => {
@@ -44,7 +43,7 @@ const NOTION_KEY = process.env.NOTION_KEY;
 const FEST_KEY = process.env.NOTION_FEST_ID;
 const NOTION = new Client({ auth: NOTION_KEY });
 
-const getPageProperty = async (id_array) => {
+const getPageProperty = async (id_array, PATH) => {
     const PROPERTY_OBJECT = [];
     for (let i = 0; i < id_array.length; i++) {
         const DATA_TYPE_ARRAY = [];
@@ -65,27 +64,69 @@ const getPageProperty = async (id_array) => {
                 })
             })
     }
-    set(ref(database, 'notion/fest'), PROPERTY_OBJECT);
-    console.timeEnd('데이터 업로드')
+    // DB에 입력
+    set(ref(database, PATH), PROPERTY_OBJECT);
 }
 
-const getPgaeID = (result_array) => {
+const getPgaeID = (result_array, PATH) => {
     const ID_ARRAY = [];
     result_array.forEach((el) => {
         let { id } = el
         ID_ARRAY.push({ id })
     })
-    getPageProperty(ID_ARRAY)
+    getPageProperty(ID_ARRAY, PATH)
 }
 
-const getFestPages = async (req, res) => {
-    const response = await NOTION.databases.query({
+const getFestPages = async () => {
+    const response_fest = await NOTION.databases.query({
         database_id: FEST_KEY,
         sorts: [{
             property: 'date',
             direction: 'ascending'
             // direction: 'descending',
-        }]
+        }],
+        filter: {
+            or: [
+                {
+                    property: "type",
+                    multi_select: {
+                        contains: "행사"
+                    }
+                },
+                {
+                    property: "type",
+                    multi_select: {
+                        contains: "대회"
+                    }
+                }
+            ]
+        }
     });
-    getPgaeID(response.results);
+
+    const response_class = await NOTION.databases.query({
+        database_id: FEST_KEY,
+        sorts: [{
+            property: 'date',
+            direction: 'ascending'
+            // direction: 'descending',
+        }],
+        filter: {
+            or: [
+                {
+                    property: "type",
+                    multi_select: {
+                        contains: "팀원"
+                    }
+                },
+                {
+                    property: "type",
+                    multi_select: {
+                        contains: "강습"
+                    }
+                }
+            ]
+        }
+    });
+    getPgaeID(response_fest.results, 'notion/fest');
+    getPgaeID(response_class.results, 'notion/class');
 }
