@@ -81,4 +81,10 @@
     column-gap: .5rem;
 }
 
-.list__box .item .link a {}
+.list__box .item .link a {
+    font-size: .8rem;
+    background-color: var(--light-black-color);
+    color: #fff;
+    padding: 8px 6px;
+    border-radius: 3px;
+}
