@@ -4,9 +4,10 @@ const getJson = () => {
         .then(response => response.json())
         .then(data => {
             const ITEM = document.querySelector('.item');
-            cloneEl(data.length, ITEM)
-            writeDate(data)
-            console.timeEnd('getJson')
+            cloneEl(data.length, ITEM);
+            writeDate(data);
+            console.timeEnd('데이터 가져오기');
+            loading(showItem);
         })
 }
 // 데이터 배열 갯수만큼 요소 복사하는 함수
@@ -27,11 +28,10 @@ const writeDate = (data) => {
     const formpage = document.querySelectorAll('.formpage');
     const checkpage = document.querySelectorAll('.checkpage');
     const webpage = document.querySelectorAll('.webpage');
-    const el = [d_date, title, type, start_date, end_date, detail, formpage, checkpage, webpage];
-
+    const EL_ARRAY = [d_date, title, type, start_date, end_date, detail, formpage, checkpage, webpage];
 
     for (let i = 0; i < data.length; i++) {
-        el.forEach((el, index) => {
+        EL_ARRAY.forEach((el, index) => {
             if (data[i][el[i].dataset.key] != "") {
                 if (el[i].dataset.key == "formpage" || el[i].dataset.key == "webpage" || el[i].dataset.key == "checkpage") {
                     el[i].setAttribute('href', data[i][el[i].dataset.key])
@@ -54,6 +54,16 @@ const writeDate = (data) => {
     }
 }
 
+const loading = (callback) => {
+    const LOADING = document.querySelector('.loading');
+    LOADING.classList.add('hide');
+    callback()
+}
 
-console.time('getJson')
+const showItem = () => {
+    const ITEMS = document.querySelectorAll('li.item');
+    ITEMS.forEach((el) => el.classList.remove('hide'))
+}
+
+console.time('데이터 가져오기')
 getJson()
