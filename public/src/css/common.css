@@ -80,11 +80,13 @@
 }
 
 header {
-    min-height: 100vh;
+    max-height: 100vh;
+    height: 100vh;
     max-width: 20vw;
-    position: sticky;
     width: 100%;
     display: flex;
+    position: sticky;
+    top: 0;
 }
 
 header nav {
