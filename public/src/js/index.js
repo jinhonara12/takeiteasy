@@ -1,6 +1,25 @@
+// url 체크하여 가져오는 데이터 다르게 하기
+const checkUrl = () => {
+    const PAGE_LIST = ['class'];
+    let path;
+    PAGE_LIST.forEach(el => {
+        location.pathname.indexOf(el) >= 0 ? path = el : path = "index";
+    })
+    markPage(path);
+    return path;
+}
+
+// 페이지 경로에 따라 네브에 아이콘 표시
+const markPage = (page) => {
+    const NAV_LINK = document.querySelectorAll('nav a');
+    NAV_LINK.forEach((el) => {
+        el.dataset.page == page ? el.classList.add('current') : '';
+    })
+}
+
 // db에서 JSON데이터 가져오는 함수
 const getJson = () => {
-    fetch("https://takeiteasy-d0bc5-default-rtdb.firebaseio.com/notion/fest.json")
+    fetch(`https://takeiteasy-d0bc5-default-rtdb.firebaseio.com/notion/${checkUrl()}.json`)
         .then(response => response.json())
         .then(data => {
             const ITEM = document.querySelector('.item');

@@ -81,10 +81,39 @@
 
 header {
     min-height: 100vh;
-    max-width: 25vw;
+    max-width: 20vw;
     position: sticky;
-    background-color: peru;
     width: 100%;
+    display: flex;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+header a {
+    text-transform: capitalize;
+    font-size: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+header a::before {
+    font-size: 1.5rem;
+}
+
+header a.current::before,
+header a:hover::before {
+    content: "👉";
 }
 
 article {

@@ -79,7 +79,7 @@ const getPgaeID = (result_array, PATH) => {
 }
 
 const getFestPages = async () => {
-    const response_fest = await NOTION.databases.query({
+    const response_index = await NOTION.databases.query({
         database_id: FEST_KEY,
         sorts: [{
             property: 'date',
@@ -128,6 +128,6 @@ const getFestPages = async () => {
             ]
         }
     });
-    getPgaeID(response_fest.results, 'notion/fest');
+    getPgaeID(response_index.results, 'notion/index');
     getPgaeID(response_class.results, 'notion/class');
 }
