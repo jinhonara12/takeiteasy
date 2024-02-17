@@ -49,7 +49,8 @@ const getPageProperty = async (id_array, PATH) => {
         const DATA_TYPE_ARRAY = [];
         const response = await NOTION.pages.retrieve({ page_id: id_array[i].id })
             .then(data => {
-                data.properties.type.multi_select.sort((a, b) => b - a).forEach((el) => { DATA_TYPE_ARRAY.push({ 'name': el.name, 'color': el.color }) })
+                data.properties.type.multi_select.sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0).forEach((el) => { DATA_TYPE_ARRAY.push({ 'name': el.name, 'color': el.color }) })
+
                 PROPERTY_OBJECT.push({
                     title: data.properties.name.title[0].plain_text,
                     start_date: data.properties.date.date ? data.properties.date.date.start : '',
@@ -82,8 +83,8 @@ const getFestPages = async () => {
         database_id: FEST_KEY,
         sorts: [{
             property: 'date',
-            direction: 'ascending'
-            // direction: 'descending',
+            // direction: 'ascending'
+            direction: 'descending',
         }],
         filter: {
             or: [
@@ -107,8 +108,8 @@ const getFestPages = async () => {
         database_id: FEST_KEY,
         sorts: [{
             property: 'date',
-            direction: 'ascending'
-            // direction: 'descending',
+            // direction: 'ascending'
+            direction: 'descending',
         }],
         filter: {
             or: [

@@ -37,7 +37,7 @@ const writeDate = (data) => {
                     el[i].setAttribute('href', data[i][el[i].dataset.key])
                 }
                 else if (el[i].dataset.key == "type") {
-                    const typeSpan = document.querySelector('.type span');
+                    const typeSpan = document.querySelectorAll('li.item')[i].querySelector('.type span');
                     cloneEl(data[i].type.length, typeSpan)
                     for (let j = 0; j < type[i].childElementCount; j++) {
                         el[i].querySelectorAll('span')[j].textContent = data[i][el[i].dataset.key][j].name
