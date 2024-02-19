@@ -9,8 +9,8 @@
   },
   "functions": [
     {
-      "source": "functions",
-      "codebase": "default",
+      "source": "find-swing-functions",
+      "codebase": "find-swing-functions",
       "ignore": [
         "node_modules",
         ".git",

@@ -4,7 +4,6 @@ const checkUrl = () => {
     let path;
 
     for (let i = 0; i < PAGE_LIST.length; i++) {
-        console.log(location.pathname.indexOf('end'))
         if (location.pathname.indexOf(PAGE_LIST[i]) >= 0) {
             path = PAGE_LIST[i];
             markPage(path);

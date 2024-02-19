@@ -1,3 +1,7 @@
+/*
+    /functions/index.js 에서 서버에 업로드하여 1일 1번 실행하도록 스케쥴링 작업하고 있음.
+*/
+
 import dotenv from "dotenv"
 import { initializeApp } from "firebase/app";
 import { getDatabase, set, ref } from "firebase/database"
