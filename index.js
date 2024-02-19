@@ -87,17 +87,29 @@ const getFestPages = async () => {
             direction: 'descending',
         }],
         filter: {
-            or: [
+            and: [
                 {
-                    property: "type",
-                    multi_select: {
-                        contains: "행사"
-                    }
+                    or: [
+                        {
+                            property: "type",
+                            multi_select: {
+                                contains: "행사"
+                            }
+                        },
+                        {
+                            property: "type",
+                            multi_select: {
+                                contains: "대회"
+                            }
+                        }
+                    ],
                 },
                 {
-                    property: "type",
-                    multi_select: {
-                        contains: "대회"
+                    property: "d_day",
+                    formula: {
+                        string: {
+                            does_not_contain: "종료"
+                        }
                     }
                 }
             ]
@@ -112,28 +124,58 @@ const getFestPages = async () => {
             direction: 'descending',
         }],
         filter: {
-            or: [
+            and: [
                 {
-                    property: "type",
-                    multi_select: {
-                        contains: "팀원"
-                    }
+                    or: [
+                        {
+                            property: "type",
+                            multi_select: {
+                                contains: "팀원"
+                            }
+                        },
+                        {
+                            property: "type",
+                            multi_select: {
+                                contains: "강습"
+                            }
+                        },
+                        {
+                            property: "type",
+                            multi_select: {
+                                contains: "워크샵"
+                            }
+                        }
+                    ]
                 },
                 {
-                    property: "type",
-                    multi_select: {
-                        contains: "강습"
-                    }
-                },
-                {
-                    property: "type",
-                    multi_select: {
-                        contains: "워크샵"
+                    property: "d_day",
+                    formula: {
+                        string: {
+                            does_not_contain: "종료"
+                        }
                     }
                 }
             ]
         }
     });
+
+    const response_end = await NOTION.databases.query({
+        database_id: FEST_KEY,
+        sorts: [{
+            property: 'date',
+            // direction: 'ascending'
+            direction: 'descending',
+        }],
+        filter: {
+            property: "d_day",
+            formula: {
+                string: {
+                    contains: "종료"
+                }
+            }
+        }
+    });
     getPgaeID(response_index.results, 'notion/index');
     getPgaeID(response_class.results, 'notion/class');
+    getPgaeID(response_end.results, 'notion/end');
 }

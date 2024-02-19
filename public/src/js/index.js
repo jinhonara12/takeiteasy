@@ -1,12 +1,20 @@
 // url 체크하여 가져오는 데이터 다르게 하기
 const checkUrl = () => {
-    const PAGE_LIST = ['class'];
+    const PAGE_LIST = ['class', 'end'];
     let path;
-    PAGE_LIST.forEach(el => {
-        location.pathname.indexOf(el) >= 0 ? path = el : path = "index";
-    })
+
+    for (let i = 0; i < PAGE_LIST.length; i++) {
+        console.log(location.pathname.indexOf('end'))
+        if (location.pathname.indexOf(PAGE_LIST[i]) >= 0) {
+            path = PAGE_LIST[i];
+            markPage(path);
+            break
+        } else {
+            path = "index";
+        }
+    }
     markPage(path);
-    return path;
+    return path
 }
 
 // 페이지 경로에 따라 네브에 아이콘 표시
