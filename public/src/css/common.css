@@ -147,7 +147,6 @@ article {
         max-width: inherit;
         width: 100%;
         justify-content: center;
-        top: 1rem;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
