@@ -133,3 +133,70 @@ article {
     font-size: 5rem;
     text-transform: capitalize;
 }
+
+@media (max-width:1440px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (max-width:1024px) {
+    header {
+        padding: 2rem 0;
+        height: auto;
+        max-width: inherit;
+        width: 100%;
+        justify-content: center;
+        top: 1rem;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    header nav ul {
+        flex-direction: row;
+        column-gap: 2rem;
+        flex-wrap: wrap;
+        padding: 0 2rem;
+    }
+
+    header a {
+        margin-left: 1.5rem;
+    }
+
+    header a.current::before,
+    header a:hover::before {
+        position: absolute;
+        transform: translateX(calc(-50% - 1.5rem));
+    }
+
+    .wrapper {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    article {
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+
+    .subject {
+        margin-top: 0rem;
+    }
+}
+
+@media (max-width:768px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:479px) {
+    html {
+        font-size: 13px;
+    }
+
+    header nav ul li {
+        width: 100%;
+    }
+}
