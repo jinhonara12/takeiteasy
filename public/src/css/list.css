@@ -44,6 +44,7 @@
 .list__box .item .title__box .type {
     display: flex;
     gap: .5rem;
+    min-width: fit-content;
 }
 
 .list__box .item .title__box .type span {
